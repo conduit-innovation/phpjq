@@ -1,0 +1,36 @@
+{
+    "name": "talss89/phpjq",
+    "type": "library",
+    "description": "Lightweight PHP Asynchronous Job Queue",
+    "keywords": [
+        "job",
+        "queue",
+        "asynchronous",
+        "lightweight",
+        "sqlite",
+        "native"
+        ],
+    "homepage": "https://github.com/talss89/phpjq",
+    "license": "GPL2",
+    "authors": [
+        {
+            "name": "Tom Lawton",
+            "email": "tom.lawton@whitesite.co",
+            "role": "Lead Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.0"
+    },
+    "require-dev": {
+        
+    },
+    "include-path": ["class"],
+    "autoload": {
+        "files": [
+            "class/class-phpjq-job.php",
+            "class/class-phpjq-server.php",
+            "class/class-phpjq-worker.php"
+        ]
+    }
+}
