@@ -86,7 +86,7 @@ class PHPJQ_Server {
 
         $pid = $result[0];
 
-        exec('ps ' . $pid, $output);
+        exec('ps ' . $pid, $output, $exit);
 
         if (count($output) == 2) {
             return true;
@@ -136,6 +136,7 @@ class PHPJQ_Server {
         $pid = array();
 
         exec(sprintf("%s > %s 2>&1 & echo $!", "php " . $this->worker_path . " " . $worker_id . " '" . $this->db_name . "'", dirname(__FILE__) . "/out.tmp"), $pid);
+        
         $pid = $pid[0];
 
         return true;
@@ -186,17 +187,19 @@ class PHPJQ_Server {
 
         $q = $this->db->prepare("INSERT INTO phpjq_options ('key', 'value') VALUES(:key, :pid);");
         $q->bindValue(':key', $key);
-        $q->bindValue(':value', getmypid(), SQLITE3_INTEGER);
+        $q->bindValue(':pid', getmypid());
         $q->execute();
 
         return true;
     }
 
     public function free_worker($worker_id) {
-
-        if (!is_int($worker_id))
+        
+        if (!is_numeric($worker_id))
             return false;
 
+        $worker_id = (int) $worker_id;
+        
         $key = "worker_pid_" . $worker_id;
 
         $q = $this->db->prepare("DELETE FROM phpjq_options WHERE key=:key;");
