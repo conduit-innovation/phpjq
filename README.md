@@ -56,7 +56,7 @@ The worker is simply a PHP-CLI script, which will consume and process all outsta
 
 You register methods with the worker, which are run against jobs matching the method name.
 
-It's always called from the command line, and never accessed directly. Leave execution of the worker script to PHPJQ.
+It's always called from the command line, and never accessed directly. Leave execution of the worker script to PHPJQ: when dispatching a job, the `dispatch()` call will check if any workers are currently running, and if they aren't it will fire up an instance without blocking and return. The job will then be eventually consumed by this worker without any other interaction required.
 
 - First, copy the worker-example.php template contained in this repo to a location of your choice. Make sure all the PHPJQ classes are accessible from the worker script. Either include your Composer autoload.php file, **or** include the 3 files in `class\` manually.
 - Now you're ready to add methods. Let's add a simple "Hello World" job. Just after the line `$worker = new PHPJQ_Worker($argv[1], $argv[2]);` add:

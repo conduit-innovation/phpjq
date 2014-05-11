@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="generator" content="ApiGen 2.8.0" />
+
+	<title>Class PHPJQ_Server | phpjq</title>
+
+	<script type="text/javascript" src="resources/combined.js?1889508232"></script>
+	<script type="text/javascript" src="elementlist.js?3704294941"></script>
+	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
+
+</head>
+
+<body>
+<div id="left">
+	<div id="menu">
+		<a href="index.html" title="Overview"><span>Overview</span></a>
+
+
+		<div id="groups">
+		</div>
+
+
+
+		<div id="elements">
+			<h3>Classes</h3>
+			<ul>
+				<li><a href="class-PHPJQ_Job.html">PHPJQ_Job</a></li>
+				<li class="active"><a href="class-PHPJQ_Server.html">PHPJQ_Server</a></li>
+				<li><a href="class-PHPJQ_Worker.html">PHPJQ_Worker</a></li>
+			</ul>
+
+
+
+
+
+		</div>
+	</div>
+</div>
+
+<div id="splitter"></div>
+
+<div id="right">
+<div id="rightInner">
+	<form id="search">
+		<input type="hidden" name="cx" value="" />
+		<input type="hidden" name="ie" value="UTF-8" />
+		<input type="text" name="q" class="text" />
+		<input type="submit" value="Search" />
+	</form>
+
+	<div id="navigation">
+		<ul>
+			<li>
+				<a href="index.html" title="Overview"><span>Overview</span></a>
+			</li>
+			<li class="active">
+<span>Class</span>			</li>
+		</ul>
+		<ul>
+			<li>
+				<a href="tree.html" title="Tree view of classes, interfaces, traits and exceptions"><span>Tree</span></a>
+			</li>
+			<li>
+				<a href="todo.html" title="Todo list"><span>Todo</span></a>
+			</li>
+		</ul>
+		<ul>
+		</ul>
+	</div>
+
+<div id="content" class="class">
+	<h1>Class PHPJQ_Server</h1>
+
+
+	<div class="description">
+	
+<p>The PHPJQ Server Class</p>
+
+	</div>
+
+
+
+
+
+
+
+
+
+	<div class="info">
+		
+		
+		
+		
+
+		<b>Located at</b> <a href="source-class-PHPJQ_Server.html#3-267" title="Go to source code">class/class-phpjq-server.php</a><br />
+	</div>
+
+
+
+	<table class="summary" id="methods">
+	<caption>Methods summary</caption>
+	<tr data-order="__construct" id="___construct">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#___construct">#</a>
+		<code><a href="source-class-PHPJQ_Server.html#38-59" title="Go to source code">__construct</a>( <span>string <var>$db_name</var></span>, <span>string <var>$worker_path</var> = <span class="php-keyword1">false</span></span>, <span>integer <var>$worker_count</var> = <span class="php-keyword1">false</span></span> )</code>
+
+		<div class="description short">
+			
+<p>The constructor will install the database if it does not already exist.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>The constructor will install the database if it does not already exist.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$db_name</var></dt>
+					<dd><code>string</code><br>SQLite DB fully qualified path and filename</dd>
+					<dt><var>$worker_path</var></dt>
+					<dd><code>string</code><br>Fully qualified path to worker script</dd>
+					<dt><var>$worker_count</var></dt>
+					<dd><code>integer</code><br>Not Implemented: Total worker processes</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="dispatch" id="_dispatch">
+
+		<td class="attributes"><code>
+			 public 
+			integer
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_dispatch">#</a>
+		<code><a href="source-class-PHPJQ_Server.html#61-75" title="Go to source code">dispatch</a>( <span><code><a href="class-PHPJQ_Job.html">PHPJQ_Job</a></code> <var>$job</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Dispatch a new job to the queue. Non-blocking. If server isn't running, the
+dispatcher will spawn a new worker automatically. Handsfree.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Dispatch a new job to the queue. Non-blocking. If server isn't running, the
+dispatcher will spawn a new worker automatically. Handsfree.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$job</var></dt>
+					<dd><code><code><a href="class-PHPJQ_Job.html">PHPJQ_Job</a></code></code><br>The job object to dispatch</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>integer</code><br>The job id.<br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="is_complete" id="_is_complete">
+
+		<td class="attributes"><code>
+			 public 
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_is_complete">#</a>
+		<code><a href="source-class-PHPJQ_Server.html#77-94" title="Go to source code">is_complete</a>( <span>integer <var>$id</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Check if a job is complete</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Check if a job is complete</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$id</var></dt>
+					<dd><code>integer</code><br>Job ID</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br>True if complete, false if not complete / does not exist.<br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="receive" id="_receive">
+
+		<td class="attributes"><code>
+			 public 
+			<code><a href="class-PHPJQ_Job.html">PHPJQ_Job</a></code>|boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_receive">#</a>
+		<code><a href="source-class-PHPJQ_Server.html#96-117" title="Go to source code">receive</a>( <span>integer <var>$id</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Recieve data from a completed job.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Recieve data from a completed job.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$id</var></dt>
+					<dd><code>integer</code><br>Job ID</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-PHPJQ_Job.html">PHPJQ_Job</a></code>|boolean</code><br>False if job failed or isn't complete. A job object if job completed OK.<br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="register_worker" id="_register_worker">
+
+		<td class="attributes"><code>
+			 public 
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_register_worker">#</a>
+		<code><a href="source-class-PHPJQ_Server.html#211-244" title="Go to source code">register_worker</a>( <span>integer <var>$worker_id</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Registers current process as $worker_id worker. Called only by PHPJQ_Worker
+internally.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Registers current process as $worker_id worker. Called only by PHPJQ_Worker
+internally.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$worker_id</var></dt>
+					<dd><code>integer</code><br>$worker_id</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br>True if registered, false if not.<br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="free_worker" id="_free_worker">
+
+		<td class="attributes"><code>
+			 public 
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_free_worker">#</a>
+		<code><a href="source-class-PHPJQ_Server.html#246-265" title="Go to source code">free_worker</a>( <span>type <var>$worker_id</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Frees a worker process. Called only by PHPJQ_Worker internally.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Frees a worker process. Called only by PHPJQ_Worker internally.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$worker_id</var></dt>
+					<dd><code>type</code><br>$worker_id</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br>True if worker freed, false if there was a problem with the input<br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	</table>
+
+
+
+
+
+
+
+
+
+
+
+
+	<table class="summary" id="properties">
+	<caption>Properties summary</caption>
+	<tr data-order="db_name" id="$db_name">
+		<td class="attributes"><code>
+			public  
+			string
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-PHPJQ_Server.html#8-12" title="Go to source code"><var>$db_name</var></a>
+		</td>
+		<td class="value"><code><span class="php-keyword1">null</span></code></td>
+		<td class="description"><div>
+			<a href="#$db_name" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>SQLite DB fully qualified path and filename</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>SQLite DB fully qualified path and filename</p>
+
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="worker_count" id="$worker_count">
+		<td class="attributes"><code>
+			public  
+			integer
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-PHPJQ_Server.html#14-18" title="Go to source code"><var>$worker_count</var></a>
+		</td>
+		<td class="value"><code><span class="php-keyword1">null</span></code></td>
+		<td class="description"><div>
+			<a href="#$worker_count" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>Not Implemented: Total worker processes</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>Not Implemented: Total worker processes</p>
+
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="worker_path" id="$worker_path">
+		<td class="attributes"><code>
+			public  
+			string
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-PHPJQ_Server.html#20-24" title="Go to source code"><var>$worker_path</var></a>
+		</td>
+		<td class="value"><code><span class="php-keyword1">null</span></code></td>
+		<td class="description"><div>
+			<a href="#$worker_path" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>Fully qualified path to worker script</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>Fully qualified path to worker script</p>
+
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="db" id="$db">
+		<td class="attributes"><code>
+			public  
+			resource
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-PHPJQ_Server.html#26-30" title="Go to source code"><var>$db</var></a>
+		</td>
+		<td class="value"><code><span class="php-keyword1">null</span></code></td>
+		<td class="description"><div>
+			<a href="#$db" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>SQLite3 resource handle</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>SQLite3 resource handle</p>
+
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="config" id="$config">
+		<td class="attributes"><code>
+			public  
+			array
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-PHPJQ_Server.html#32-36" title="Go to source code"><var>$config</var></a>
+		</td>
+		<td class="value"><code><span class="php-keyword1">null</span></code></td>
+		<td class="description"><div>
+			<a href="#$config" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>Configuration (contents of phpjq_options table)</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>Configuration (contents of phpjq_options table)</p>
+
+
+			</div>
+		</div></td>
+	</tr>
+	</table>
+
+
+
+
+
+
+</div>
+
+	<div id="footer">
+		phpjq API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
+	</div>
+</div>
+</div>
+</body>
+</html>

@@ -73,7 +73,7 @@ class PHPJQ_Worker {
     private function get_unallocated_job_or_free() {
 
         /**
-         * Atomic ownership - should prevent races under load
+         * Atomic take ownership - should prevent races under load
          */
         $this->server->db->exec("BEGIN EXCLUSIVE TRANSACTION;");
 
