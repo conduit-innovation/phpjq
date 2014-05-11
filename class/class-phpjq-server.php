@@ -8,7 +8,7 @@ class PHPJQ_Server {
     public $db = null;
     public $config = null;
 
-    function __construct($db_name, $worker_path, $worker_count = false) {
+    function __construct($db_name, $worker_path = false, $worker_count = false) {
         $this->db_name = $db_name;
         $this->worker_path = $worker_path;
 
@@ -130,12 +130,15 @@ class PHPJQ_Server {
         /**
          * @TODO: Foreach worker...
          */
+        if(!$this->worker_path || !file_exists($this->worker_path))
+            return false;
+        
         $pid = array();
 
         exec(sprintf("%s > %s 2>&1 & echo $!", "php " . $this->worker_path . " " . $worker_id . " '" . $this->db_name . "'", dirname(__FILE__) . "/out.tmp"), $pid);
         $pid = $pid[0];
 
-        return;
+        return true;
     }
 
     private function set_worker_count($count) {
