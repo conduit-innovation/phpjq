@@ -34,7 +34,7 @@ I wrote it for use with Deploy WP (unreleased) - it's role being to manage long-
 PHPJQ was designed to be lightweight, and easy to set up. That said, it does have a few dependencies:
 
 - PHP >= 5.3.2
-- PHP SQLite3 Extension
+- PHP SQLite3 Extension `sudo apt-get install php5-sqlite` 
 - Debian / Ubuntu - other \*nix environments may work, but aren't tested. *Why not help out?*
 - PHP5-CLI
 
