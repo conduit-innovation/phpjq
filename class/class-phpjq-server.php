@@ -50,7 +50,7 @@ class PHPJQ_Server {
         return false;
     }
 
-    public function recieve($id) {
+    public function receive($id) {
         $q = $this->db->prepare("SELECT * FROM phpjq_jobs WHERE id = :id LIMIT 1");
         $q->bindValue(":id", $id);
         $job = $q->execute()->fetchArray();

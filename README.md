@@ -106,10 +106,12 @@ It's easy. Assuming `$job_id` is set to a valid pre-existing job number, we can 
 
 ```php
 if($server->is_complete($job_id)
-    $data = $server->recieve($job_id);
+    $data = $server->receive($job_id);
 ```
 
 Just bear in mind, that dispatching a job, then checking for completion in the same request is probably pointless. It's unlikely the job will have finished in such a small time. The job id is intended to be passed between requests and polled to indicate completion.
+
+**Gotcha!** At the moment, the job is removed from the queue when `receive()` is called. Successive calls to `receive()` with the same job id will return false. It's down to you to act on and store the data returned from the job. Don't rely on the job queue for data storage!
 
 ## TODO / Problems
 
