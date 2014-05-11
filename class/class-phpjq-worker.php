@@ -81,22 +81,24 @@ class PHPJQ_Worker {
             $q->bindValue(":worker", $this->worker_id);
             $q->execute();
 
-            $this->server->db->exec("COMMIT TRANSACTION;");
+            
         } else {
+            
             /*
              * There's no point wasting resources if there's nothing to do, so free the worker and shut down
              * When another job is dispatched, the server will be forked again
              */
 
             $this->server->free_worker($this->worker_id);
-            $this->server->db->exec("ROLLBACK TRANSACTION;");
-            return false;
+
         }
 
         if ($job) {
             $job = new PHPJQ_Job($job['method'] , $job['data'], $job['id']);
         }
 
+        $this->server->db->exec("COMMIT TRANSACTION;");
+        
         return $job;
     }
 
