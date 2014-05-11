@@ -26,7 +26,7 @@ class PHPJQ_Server {
     }
 
     public function dispatch($job) {
-        $q = $this->db->prepare("INSERT INTO phpjq_jobs (method, data, running, worker) VALUES(:method, :data, 0, -1);");
+        $q = $this->db->prepare("INSERT INTO phpjq_jobs (method, data, running, worker, status) VALUES(:method, :data, 0, -1, 0);");
         $q->bindValue(":method", $job->method);
         $q->bindValue(":data", json_encode($job->data));
         $q->execute();
@@ -121,8 +121,9 @@ class PHPJQ_Server {
             method TEXT NOT NULL,
             data TEXT NOT NULL,
             return TEXT,
-            running BOOL,
-            worker INTEGER
+            running INTEGER,
+            worker INTEGER,
+            status INTEGER,
           );");
     }
 

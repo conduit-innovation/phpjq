@@ -34,7 +34,7 @@ class PHPJQ_Worker {
                 $this->job_success($job, $result);
             } else {
                 /**
-                 * @TODO: Report failure - method doesn't exist. Push back job if < max_retries.
+                 * @TODO: Report failure - method doesn't exist. 
                  */
                 $this->job_failure($job);
             }
@@ -46,7 +46,7 @@ class PHPJQ_Worker {
     private function job_success($job, $result) {
         $this->server->db->exec("BEGIN EXCLUSIVE TRANSACTION;");
 
-        $q = $this->server->db->prepare("UPDATE phpjq_jobs SET running = 0, worker = :worker, return = :return WHERE id = :id");
+        $q = $this->server->db->prepare("UPDATE phpjq_jobs SET running = 0, worker = :worker, return = :return, status = 1 WHERE id = :id");
         $q->bindValue(":id", $job->id);
         $q->bindValue(":worker", $this->worker_id);
         $q->bindValue(":return", json_encode($result));
@@ -56,7 +56,18 @@ class PHPJQ_Worker {
     }
 
     private function job_failure($job) {
-        die("FAIL");
+        $this->server->db->exec("BEGIN EXCLUSIVE TRANSACTION;");
+
+        $q = $this->server->db->prepare("UPDATE phpjq_jobs SET running = 0, worker = :worker, status = -1 WHERE id = :id");
+        $q->bindValue(":id", $job->id);
+        $q->bindValue(":worker", $this->worker_id);
+        $q->execute();
+
+        $this->server->db->exec("COMMIT TRANSACTION;");
+    }
+    
+    private function job_retry($job) {
+        
     }
 
     private function get_unallocated_job_or_free() {
@@ -66,7 +77,7 @@ class PHPJQ_Worker {
          */
         $this->server->db->exec("BEGIN EXCLUSIVE TRANSACTION;");
 
-        $job = $this->server->db->querySingle("SELECT * FROM phpjq_jobs WHERE running = 0 AND worker = -1", true);
+        $job = $this->server->db->querySingle("SELECT * FROM phpjq_jobs WHERE running = 0 AND worker = -1 AND status != -1", true);
 
         /*
          * Set false if query failed, or no jobs in queue
